@@ -1,0 +1,56 @@
+{% extends '../base.html' %}
+<!---->
+{% block title %}Detalle de Anticipos{% endblock %}
+<!---->
+{% load static %}
+<!---->
+{% block content %}
+
+<div class="row justify-content-md-center">
+  <a
+    title="volver"
+    style="float: left; font-size: 25px"
+    href="{% url 'listar_anticipos' %}">
+    <span><i class="bi bi-arrow-left-circle"></i></span>
+  </a>
+  <div class="col-md-5 mb-2">
+    <div class="card shadow">
+      {% load static %} {% if compra.foto_producto %}
+      <!---->
+      {% if compra.es_extension_valida %}
+      <img
+        class="foto_producto"
+        src="{{ anticipo.foto_producto.url }}"
+        alt="Foto de {{ anticipo.descripcion }}"
+        width="150" />
+      {% else %}
+      <img
+        class="foto_producto"
+        src="{% static 'imgs/anticipo_defaul.jpg'%}"
+        alt="Sin foto"
+        width="150" />
+      {% endif %} {% endif %}
+
+      <div class="card-body">
+        <p class="card-title"><strong>CENTRO COSTO</strong> {{ anticipo.centro_costo }}</p>
+        <p class="card-text buttom mb-3"><strong>NIT</strong> {{ anticipo.nit }}</p>
+        <p class="card-text buttom mb-3"><strong>NOMBRE</strong> {{ anticipo.nombre }}</p>
+        <p class="card-text buttom mb-3"><strong>PRODUCTO O SERVICIO</strong> {{ anticipo.producto_servicio }}</p>
+        <p class="card-text buttom mb-3"><strong>CANTIDAD</strong> {{ anticipo.cantidad }}</p>
+        <p class="card-text buttom mb-3"><strong>VLR UNITARIO</strong> {{ anticipo.vlr_unitario }}</p>
+        <p class="card-text buttom mb-3"><strong>SUBTOTAL</strong> {{ anticipo.subtotal }}</p>
+        <p class="card-text buttom mb-3"><strong>IVA</strong> {{ anticipo.iva }}</p>
+        <p class="card-text buttom mb-3"><strong>RETENCION(2.5%)</strong> {{ anticipo.retencion }}</p>
+        <p class="card-text buttom mb-3"><strong>TOTAL A PAGAR</strong> {{ anticipo.total_pagar }}</p>
+        <p class="card-text buttom mb-3"><strong>OBSERVACION</strong> {{ anticipo.observaciones }}</p>
+        <p class="card-text buttom mb-3"><strong>Fecha de Anticipo</strong> {{ anticipo.created_at|date:"M d, Y" }}</p>
+        <hr />
+
+        <a class="mt-5" href="{% url 'listar_anticipos' %}">
+          <i class="bi bi-arrow-left-circle"> Volver</i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
